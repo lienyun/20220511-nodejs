@@ -1,4 +1,6 @@
 // hello.js
+const path = require('path')
+
 const sayHello = () => {
     console.log('Hello!');
 };
@@ -19,10 +21,15 @@ module.exports.helloModule = sayHello;
 // };
 
 //當key=value 可以簡寫
-module.exports = {
-    sayHello,
-    sayHi,
-    title,
-};
+// module.exports = {
+//     sayHello,
+//     sayHi,
+//     title,
+// };
 
+//可以印出模組路徑、檔案名稱的預設屬性 __dirname （查詢所在資料夾）及 __filename （查詢包含路徑的完整檔案名稱）
+console.log('dirname', __dirname);
+console.log('filename', __filename);
+console.log(path.join(__dirname,'index.js'))
 
+// console.log('modules',module)
