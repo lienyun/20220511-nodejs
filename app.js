@@ -1,34 +1,22 @@
 //內建模組
-const http = require('http');
 
 //第三方套件
-
+const express = require('express')
 //自建模組
 
 //////////////////////////////////
-//req = request
-//res = response
+const app = express()
 
-const server = http.createServer((req, res) => {
-    console.log('req url', req.url);
-    if (req.url === '/') {
-        return res.end('This is home page');
-    } 
-		if (req.url === '/login') {
-        res.writeHead(200, {'Content-Type': 'text/html'});
-        //MIME type 若改成text/plain就不會render出HTML
-        return res.end('<h2>cant render Chinese</h2>');
-        //確定處理好，就return，把程式暫停
-    } 
-    if (req.url === '/wow') {
-        res.writeHead(200, {'Content-Type': 'text/plain'});
-        return res.end('<h1>WOWOWOWOWOW</h1>');
-    } 
-    res.end('page not found :(');
+//middleware 介於req and res中間
+app.get('/', (req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write('<head><meta charset="utf-8" /></head>')
+    res.write('<body>')
+    res.write('<h1>這是首頁</h1>')
+    res.write('</body>')
 });
 
-server.listen(3000, () => {
+
+app.listen(3000, () => {
 	console.log('Web Server is running on port 3000');
 });
-
-//3000是port號
