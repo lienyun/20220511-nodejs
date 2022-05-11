@@ -6,6 +6,8 @@ const http = require('http');
 //自建模組
 
 //////////////////////////////////
+//req = request
+//res = response
 
 const server = http.createServer((req, res) => {
     console.log('req url', req.url);
@@ -13,7 +15,14 @@ const server = http.createServer((req, res) => {
         return res.end('This is home page');
     } 
 		if (req.url === '/login') {
-        return res.end('This is login page');
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        //MIME type 若改成text/plain就不會render出HTML
+        return res.end('<h2>cant render Chinese</h2>');
+        //確定處理好，就return，把程式暫停
+    } 
+    if (req.url === '/wow') {
+        res.writeHead(200, {'Content-Type': 'text/plain'});
+        return res.end('<h1>WOWOWOWOWOW</h1>');
     } 
     res.end('page not found :(');
 });
