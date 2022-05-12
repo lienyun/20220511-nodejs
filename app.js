@@ -29,7 +29,11 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-    res.status(200).render('index');
+    res.status(200)
+        .render('index', {
+            pageTitle: '結衣來ㄌ'
+            //設定pageTitle參數，index.ejs那邊<%=pageTitle%>代入
+        });
 });
 
 app.get('/login', (req, res) => {
@@ -38,18 +42,14 @@ app.get('/login', (req, res) => {
 
 app.post('/login', (req, res) => {
     console.log('login data', req.body);
-    //這邊要安裝parse才能解析 不然會undefined
     const { email, password } = req.body;
     if (email && password) {
         res.redirect('/');
-        //如果有填寫email跟密碼，就回首頁
     } else {
-				console.log('欄位尚未填寫完成！')
+		console.log('欄位尚未填寫完成！')
     }
 });
 
-// '*'是萬用路由，記得將萬用路由放在其他路由後面，不然所有網址都會導向這個
-    //404頁面
 app.get('*', (req, res) => {
     res.status(404).render('404');
 });
