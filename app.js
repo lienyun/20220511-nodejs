@@ -23,12 +23,14 @@ app.get('/', (req, res) => {
     res.status(200)
         .render('index', {
             pageTitle: '結衣來ㄌ',
+            path: '/',
             products: products // 將常數 products 賦予給 路由參數 products
         });
 });
 
 app.get('/login', (req, res) => {
     res.status(200).render('login', {
+        path: '/login',
         pageTitle: '註冊成為結衣的粉絲俱樂部成員'
         
     });
@@ -46,7 +48,8 @@ app.post('/login', (req, res) => {
 
 app.get('*', (req, res) => {
     res.status(404).render('404', {
-        pageTitle: '找不到結衣'
+        pageTitle: '找不到結衣',
+        path: '*'
         
     });
 });
