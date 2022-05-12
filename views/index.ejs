@@ -9,5 +9,16 @@
 <body>
     <h1><%= pageTitle %></h1>
     <img src="/images/gakki.jpg" alt="">
+    <br>
+<!-- 用JS做商品頁 -->
+    <% if (products.length > 0) { %>
+        <% products.forEach((product) => { %>
+            <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
+            <h3><%= product.title %></h3>
+        <% }) %>
+    <% } else { %>
+        尚無商品
+    <% } %>
+
 </body>
 </html>

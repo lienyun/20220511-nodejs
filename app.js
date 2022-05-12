@@ -9,6 +9,7 @@ const app = express()
 
 //自建模組
 
+
 //////////////////////////////////
 
 app.set('view engine', 'ejs');
@@ -31,8 +32,8 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
     res.status(200)
         .render('index', {
-            pageTitle: '結衣來ㄌ'
-            //設定pageTitle參數，index.ejs那邊<%=pageTitle%>代入
+            pageTitle: '結衣來ㄌ',
+            products: products // 將常數 products 賦予給 路由參數 products
         });
 });
 
@@ -64,3 +65,25 @@ app.get('*', (req, res) => {
 app.listen(3000, () => {
 	console.log('Web Server is running on port 3000');
 });
+
+
+const products = [
+    {
+        title: 'SWITCH影視文藝特寫2020-2021 NO.1：新垣結衣＆星野源',
+        price: 470,
+        description: '',
+        imageUrl: 'https://im1.book.com.tw/image/getImage?i=https://www.books.com.tw/img/M01/011/85/M010118594.jpg&v=5fd036aa&w=348&h=348'
+    },
+    {
+        title: '新垣結衣寫真集：YUI ARAGAKI NYLON JAPAN ARCHIVE BOOK 2010-2019',
+        price: 3189,
+        description: '',
+        imageUrl: 'https://im1.book.com.tw/image/getImage?i=https://www.books.com.tw/img/M01/009/97/M010099779.jpg&w=374&h=374&v=5db6a70c'
+    },
+    {
+        title: '新垣結衣寫真集：純白18',
+        price: 1150,
+        description: '',
+        imageUrl: 'https://im2.book.com.tw/image/getImage?i=https://www.books.com.tw/img/M02/000/53/M020005381.jpg&v=59f156d3&w=348&h=348'
+    },
+];
