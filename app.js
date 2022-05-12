@@ -3,12 +3,16 @@ const path = require('path')
 //第三方套件
 const express = require('express')
 const bodyParser = require('body-parser');
+const { render } = require('express/lib/response');
     //解析console.log undefined的部分
 const app = express()
 
 //自建模組
 
 //////////////////////////////////
+
+app.set('view engine', 'ejs');
+app.set('views', 'views');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -25,11 +29,11 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-    res.status(200).sendFile(path.join(__dirname,'views','index.html'))
+    res.status(200).render('index');
 });
 
 app.get('/login', (req, res) => {
-    res.status(200).sendFile(path.join(__dirname,'views','login.html'))
+    res.status(200).render('login');
 });
 
 app.post('/login', (req, res) => {
@@ -47,7 +51,7 @@ app.post('/login', (req, res) => {
 // '*'是萬用路由，記得將萬用路由放在其他路由後面，不然所有網址都會導向這個
     //404頁面
 app.get('*', (req, res) => {
-    res.status(404).sendFile(path.join(__dirname,'views','404.html'))
+    res.status(404).render('404');
 });
 
 
