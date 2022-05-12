@@ -45,6 +45,10 @@ app.post('/login', (req, res) => {
 		console.log('欄位尚未填寫完成！')
     }
 });
+app.post('/logout',(req, res) => {
+    //logout機制
+    res.redirect('/login')
+})
 
 app.get('*', (req, res) => {
     res.status(404).render('404', {
